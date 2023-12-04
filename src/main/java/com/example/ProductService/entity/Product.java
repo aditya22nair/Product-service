@@ -16,11 +16,12 @@ public class Product {
         private String productId;
         private String name;
         private double price;
-        private List<String> photoUrl;
+        private String photoUrl;
         private Object description;
         private String merchantId;
         private double rating;
         private String categoryId;
+        private String categoryName;
 
 
     }

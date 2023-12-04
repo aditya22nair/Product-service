@@ -12,6 +12,8 @@ public interface InventoryService {
     boolean addInventory(InventoryDto inventoryDto);
     Optional<Inventory> getInventoryById(String inventoryId);
     Optional<Inventory> getInventoryByMerchantId(String merchantId);
+    Optional<Inventory> getInventoryByProductId(String productId);
+    Optional<Inventory> getInventoryByMerchantAndProduct(String merchantId, String productId);
 //    void updateInventory(String inventoryId, Inventory updatedInventory);
     void deleteInventory(String inventoryId);
 

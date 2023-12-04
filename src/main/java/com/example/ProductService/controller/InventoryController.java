@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/inventory")
 public class InventoryController {
@@ -23,9 +23,14 @@ public class InventoryController {
         return inventoryService.getInventoryById(id).orElse(null);
     }
 
-    @GetMapping("/{merchantId}")
+    @GetMapping("/merchant/{merchantId}")
     public Inventory getInventoryByMerchantId(@PathVariable String merchantId) {
         return inventoryService.getInventoryByMerchantId(merchantId).orElse(null);
+    }
+
+    @GetMapping("/product/{productId}")
+    public Inventory getInventoryByProductId(@PathVariable String productId) {
+        return inventoryService.getInventoryByProductId(productId).orElse(null);
     }
 
     @GetMapping
@@ -45,11 +50,13 @@ public class InventoryController {
 
     @DeleteMapping("/{id}")
     public void deleteInventory(@PathVariable String id) {
+
         inventoryService.deleteInventory(id);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public List<Inventory> findByName(@PathVariable String name){
+
         return inventoryService.findByName(name);
     }
 

@@ -36,7 +36,12 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public Optional<Inventory> getInventoryByMerchantId(String merchantId) {
-        return inventoryRepository.findById(merchantId);
+        return inventoryRepository.findByMerchantId(merchantId);
+    }
+
+    @Override
+    public Optional<Inventory> getInventoryByProductId(String productId) {
+        return inventoryRepository.findByProductId(productId);
     }
 
 
@@ -67,6 +72,29 @@ public class InventoryServiceImpl implements InventoryService {
     public void updateInventory(String merchantId, String productId, Inventory updatedInventory) {
         inventoryCustomRepository.updateInventory(merchantId,productId,updatedInventory);
     }
+
+    @Override
+    public Optional<Inventory> getInventoryByMerchantAndProduct(String merchantId, String productId) {
+        return inventoryRepository.findByMerchantIdAndProductId(merchantId, productId);
+    }
+
+//    public void addOrUpdateInventory(String merchantId, String productId, Inventory updatedInventory) {
+//        Optional<Inventory> existingInventory = getInventoryByMerchantAndProduct(merchantId,productId);
+//
+//        if (existingInventory.isPresent()) {
+//            // Update existing inventory
+//            Inventory inventory = existingInventory.get();
+//            inventory.setStock(updatedInventory.getStock());
+//            inventory.setPrice(updatedInventory.getPrice());
+//            inventoryRepository.save(inventory);
+//        } else {
+//            // Add new inventory
+//            Inventory inventory = new Inventory();
+//            BeanUtils.copyProperties(inventoryDto, inventory);
+//            inventoryRepository.save(inventory);
+//        }
+//    }
+
 
     @Override
     public void deleteInventory(String inventoryId) {
